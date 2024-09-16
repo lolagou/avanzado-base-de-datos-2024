@@ -18,7 +18,15 @@ const register = async (req, res) => {
             8. Devolver un mensaje de error si algo falló guardando al usuario (status 500)
         
     */
+
+            const usuario = req.body.usuario;
+            const nombre = req.body.nombre;
+            const apellido = req.body.apellido;
+            const email = req.body.email;
+            const password = req.body.password;
 };
+
+
 
 const login = async (req, res) => {
     // --------------- COMPLETAR ---------------
