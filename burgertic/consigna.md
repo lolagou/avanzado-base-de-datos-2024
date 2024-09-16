@@ -1,6 +1,6 @@
 # BurgerTIC
 
-En este trabajo práctico realizaremos una REST API para un restaurant de comida rápida "**BurgerTIC**". Utilizaremos `express` ([cheatsheet](https://cheatsheets-nv.vercel.app/cheatsheet/express)), `postgress` ([cheatsheet](https://cheatsheets-nv.vercel.app/cheatsheet/postgres)), `jwt` y `bcryptjs`.
+En este trabajo práctico realizaremos una REST API para un restaurant de comida rápida "**BurgerTIC**". Utilizaremos `express` ([cheatsheet](https://cheatsheets-nv.vercel.app/cheatsheet/express)), `postgres` ([cheatsheet](https://cheatsheets-nv.vercel.app/cheatsheet/postgres)), `jwt` y `bcryptjs`.
 
 ## Grupos
 
