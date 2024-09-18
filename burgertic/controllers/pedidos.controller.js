@@ -152,15 +152,12 @@ const comenzarPedido = async (req, res) => {
                 }
                 if (pedido.estado !== "aceptado") {
                     return res.status(400).json({ message: "Solo se pueden comenzar pedidos aceptados" });
-                
+                }    
+    }
+    catch (error) {
+        res.status(500).json({message: error.message})
+    }
 }
-
-const pedidoActualizado = await PedidosService.updatePedido(id, "en camino");
-res.status(200).json({ message: "Pedido en camino", pedido: pedidoActualizado });
-} catch (error) {
-res.status(500).json({ message: "Error al comenzar el pedido", error: error.message });
-}
-};
 
 
 const entregarPedido = async (req, res) => {

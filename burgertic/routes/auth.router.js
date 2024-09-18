@@ -4,9 +4,8 @@ import AuthController from "../controllers/auth.controller.js";
 const router = Router();
 
 // ------------- COMPLETAR LAS RUTAS DE LOGIN Y REGISTER -------------
-router.post("/", AuthController.getUsuario);
-router.put("/:id", verifyToken, verifyAdmin, AuthController.getUsuarioById);
-router.delete("/:id", verifyToken, verifyAdmin, AuthController.getUsuarioByEmail);
+router.post("/register", AuthController.register);
+router.post("/login", AuthController.login);
 export default router;
 
 
