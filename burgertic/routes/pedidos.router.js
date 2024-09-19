@@ -9,7 +9,6 @@ router.get("/usuario", PedidosController.getPedidosByUser);
 router.get("/:id", PedidosController.getPedidoById);
 router.post("/crear", verifyToken, verifyAdmin, PedidosController.createPedido);
 router.post("/aceptar", verifyAdmin, PedidosController.aceptarPedido);
-router.put("/comenzar", verifyAdmin, PedidosController.comenzarPedido);//no esta declarado  en controllers
 router.put("/entregar", verifyAdmin,PedidosController.entregarPedido);
 router.delete("/eliminar", verifyToken,PedidosController.deletePedido);
 

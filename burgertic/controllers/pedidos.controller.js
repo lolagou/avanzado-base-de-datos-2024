@@ -110,23 +110,7 @@ const aceptarPedido = async (req, res) => {
         res.status(500).json({ message: "Error al crear el pedido", error: error.message });
     }
 
-const aceptarPedido = async (req, res) => {
-    const { id } = req.params;
-    try {
-        const pedido = await PedidosService.getPedidoById(id);
-        if (!pedido) {
-            return res.status(404).json({ message: "Pedido no encontrado" });
-        }
-        if (pedido.estado !== "pendiente") {
-            return res.status(400).json({ message: "Solo se pueden aceptar pedidos pendientes" });
-        }
 
-        const pedidoActualizado = await PedidosService.updatePedido(id, "aceptado");
-        res.status(200).json({ message: "Pedido aceptado", pedido: pedidoActualizado });
-    } catch (error) {
-        res.status(500).json({ message: "Error al aceptar el pedido", error: error.message });
-    }
-};
 
 
 const comenzarPedido = async (req, res) => {
@@ -157,7 +141,7 @@ const comenzarPedido = async (req, res) => {
     catch (error) {
         res.status(500).json({message: error.message})
     }
-}
+};
 
 
 const entregarPedido = async (req, res) => {

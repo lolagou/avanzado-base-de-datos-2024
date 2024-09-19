@@ -1,9 +1,10 @@
 import UsuariosService from "../services/usuarios.service.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import usuariosService from "../services/usuarios.service.js";
 
 const register = async (req, res) => {
-    // --------------- COMPLETAR REGISTER---------------
+    // --------------- COMPLETAR ---------------
     /*
 
         Recordar que para cumplir con toda la funcionalidad deben:
@@ -18,81 +19,28 @@ const register = async (req, res) => {
             8. Devolver un mensaje de error si algo falló guardando al usuario (status 500)
         
     */
-
-
-const register = async (req, res) => {
     try {
-        const {usuario} = req.body; 
-        res.json(usuario);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+        if (!req.body.usuario) return res.status(400).send("No se encontro un usuario en el body de la request");
+        const {usuario} = req.body
+        if (!usuario.nombre || !usuario.apellido || !usuario.email || !usuario.password) return res.status(400).send("Atributos de usuario ivnalidos"); 
+        const usuarioExiste = await UsuariosService.getUsuarioByEmail(usuario.email)
+        if (usuarioExiste) return res.status(400).send(`Usuario con mail ${usuario.email} ya existe`);
+        usuario.password = await bcrypt.hash(usuario.password, 10)
+        const GuardarUsuario = await UsuariosService.createUsuario(usuario)
+        if (GuardarUsuario) return res.status (201).send ("Salio todo bien")
+        if(!GuardarUsuario) return res.states (400).send ("No salio bien")
     }
-};
-
-const { nombre, apellido, email, password } = usuario;
-        if (!nombre || !apellido || !email || !password) {
-            return res.status(400).json({ message: "Faltan llenar los campos" });
-
-
-const usuarioExistente = await UsuariosService.getUsuarioByEmail(email);
-        if (usuarioExistente) {
-            return res.status(400).json({ message: "Ya existe un usuario con este email" });
-            }
-
-const salt = bcrypt.genSaltSync(10);
-const hashedPassword = bcrypt.hashSync(password, salt);
-
-
-const nuevoUsuario = {
-    nombre,
-    apellido,
-    email,
-    password: hashedPassword
-};
-
-const usuarioGuardado = await UsuariosService.createUsuario(nuevoUsuario);
-
-res.status(201).json({ message: "Usuario registrado ", usuario: usuarioGuardado});
-}
-
-};
-
-const getUsuarioById = async (req, res) => {
-    const { id } = req.params;
-
-    if (!id) return res.status(400).json({ message: "Se necesita un ID" });
-
-    try {
-        const usuario = await UsuariosService.getUsuarioById(id);
-        if (!usuario)
-            return res.status(404).json({ message: "Usuario no encontrado" });
-        res.json(usuario);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+    catch (error){ 
+        res.status (400).send ("Algo fallo hasta el momento")
     }
+
+    
+    
+
 };
 
-const CreateUsuario = async (req, res) => {
-    const plato = req.body;
-
-    if (!plato)
-        return res.status(400).json({ message: "Se necesita un usuario" });
-
-    if (!usuario.email || !usuario.nombre || !usuario.password || !plato.descripcion)
-        return res.status(400).json({ message: "Faltan campos por llenar" });
-
-    try {
-        await PlatosService.CreateUsuario(plato);
-        res.json({ message: "Usuario creado" });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
-
-//agregar export default 
-
-
-    // --------------- COMPLETAR LOGIN ---------------
+const login = async (req, res) => {
+    // --------------- COMPLETAR ---------------
     /*
 
         Recordar que para cumplir con toda la funcionalidad deben:
@@ -107,34 +55,9 @@ const CreateUsuario = async (req, res) => {
             8. Devolver un mensaje de error si algo falló (status 500)
         
     */
-
-            
-const login = async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        if (!email || !password) {
-            return res.status(400).json({ message: "Email y contraseña son requeridos" });
-        }
-
-        const usuario = await UsuariosService.getUsuarioByEmail(email);
-        if (!usuario) {
-            return res.status(400).json({ message: "Usuario no encontrado" });
-        }
-
-        const passwordValida = bcrypt.compareSync(password, usuario.password);
-        if (!passwordValida) {
-            return res.status(400).json({ message: "Contraseña incorrecta" });
-        }
-
-        const token = jwt.sign({ id: usuario.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-
-        res.status(200).json({ usuario, token });
-    } catch (error) {
-        res.status(500).json({ message: "Error al iniciar sesión", error: error.message });
-    }
+        const {usuario} = req.body
+        if (!usuario.email || !usuario.password) return res.status(400).send("Atributos de usuario ivnalidos"); 
+        if(!usuario.email) 
 };
 
 export default { register, login };
-
-
-
