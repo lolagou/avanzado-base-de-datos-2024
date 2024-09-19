@@ -55,9 +55,16 @@ const login = async (req, res) => {
             8. Devolver un mensaje de error si algo falló (status 500)
         
     */
-        const {usuario} = req.body
-        if (!usuario.email || !usuario.password) return res.status(400).send("Atributos de usuario ivnalidos"); 
-        if(!usuario.email) 
+        try {
+            const {usuario} = req.body
+            if (!usuario.email || !usuario.password) return res.status(400).send("Atributos de usuario ivnalidos"); 
+            usuario = await bcrypt.compare(usuario, 10)
+            usuario.password = await bcrypt.compare(usuario.password, 10)
+            //seguir
+        } catch (error){
+            res.status (400).send ("Algo fallo hasta el momento")
+        }
+
 };
 
 export default { register, login };
