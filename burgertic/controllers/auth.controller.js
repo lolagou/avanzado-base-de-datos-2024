@@ -60,11 +60,22 @@ const login = async (req, res) => {
             if (!usuario.email || !usuario.password) return res.status(400).send("Atributos de usuario ivnalidos"); 
             usuario = await bcrypt.compare(usuario, 10)
             usuario.password = await bcrypt.compare(usuario.password, 10)
-            //seguir
         } catch (error){
             res.status (400).send ("Algo fallo hasta el momento")
         }
 
-};
+        const token = jwt.sign({ userId: usuario._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    
+        return res.status(200).json({
+            message: 'Inicio de sesión exitoso',
+            usuario: {
+                id: usuario.id,
+                email: usuario.email,
+                nombre: usuario.nombre
+            },
+            token
+        });
+    
+    };
 
 export default { register, login };
