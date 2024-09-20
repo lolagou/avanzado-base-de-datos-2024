@@ -1,7 +1,12 @@
 
-//PEDIDOS 
+### Rutas de auth
+GET http://localhost:9000/auth/register HTTP/1.1
 
-GET http://localhost:9000/pedidos HTTP/1.1
+###
+GET http://localhost:9000/auth/login HTTP/1.1
+
+### Rutas pedido
+GET http://localhost:9000/pedidos/ HTTP/1.1
 
 ###
 GET http://localhost:9000/pedidos/usuario HTTP/1.1
@@ -9,34 +14,34 @@ GET http://localhost:9000/pedidos/usuario HTTP/1.1
 ###
 GET http://localhost:9000/pedidos/:id HTTP/1.1
 
-###
-POST http://localhost:9000/pedidos HTTP/1.1
+### 
+POST http://localhost:9000/pedidos/crear HTTP/1.1
 
 ###
-PUT http://localhost:9000/pedidos/:id/aceptar HTTP/1.1
+POST http://localhost:9000/pedidos/aceptar HTTP/1.1
 
 ###
-DELETE http://localhost:9000/ HTTP/1.1
+PUT http://localhost:9000/pedidos/entragar HTTP/1.1
+
+### 
+DELETE http://localhost:9000/pedidos/delete HTTP/1.1
+
+//Rutas platos
 
 ###
-//PUT  http://localhost:3000/Pedido HTTP/1.1
-//Conten-Type: application/json
-//{
-//} http://localhost:3000/ HTTP/1.1
-
-//PLATOS
+GET http://localhost:9000/platos/ HTTP/1.1
 
 ###
-GET http://localhost:9000/Platos HTTP/1.1
+GET http://localhost:9000/platos/tipo/:tipo HTTP/1.1
 
 ###
-GET  http://localhost:9000/PlatosById HTTP/1.1
+POST http://localhost:9000/platos/ HTTP/1.1
 
 ###
-POST http://localhost:9000/Plato HTTP/1.1
+PUT http://localhost:9000/platos/:id HTTP/1.1
 
 ###
-PUT http://localhost:9000/ HTTP/1.1
+DELETE http://localhost:9000/platos/:id HTTP/1.1
 
 export default {
     getPlatos,
