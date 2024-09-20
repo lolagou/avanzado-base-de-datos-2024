@@ -19,25 +19,27 @@ const register = async (req, res) => {
         
     */
     try {
-        let {nombre, apellido, email, password} = req.body
-        if (!nombre || !apellido || !email || !password) return res.status(400).send("Atributos de usuario ivnalidos"); 
-        const usuarioExiste = await UsuariosService.getUsuarioByEmail(email)
-        if (usuarioExiste) return res.status(400).send(`Usuario con mail ${email} ya existe`);
-        password = await bcrypt.hash(password, 10)
-        const GuardarUsuario = await UsuariosService.createUsuario(nombre, apellido, email, password)
-        if (GuardarUsuario) return res.status (201).send ("Salio todo bien")
-        if(!GuardarUsuario) return res.states (400).send ("No salio bien")
-    }
-    catch (error){ 
-        res.status (400).send ("Algo fallo hasta el momento")
+        if (!req.body.usuario) return res.status(400).send("No se encontro un usuario en el body de la request");
+        const {usuario} = req.body
+        if (!usuario.nombre || !usuario.apellido || !usuario.email || !usuario.password) return res.status(400).send("Atributos de usuario ivnalidos"); 
+        const usuarioExiste = await UsuariosService.getUsuarioByEmail(usuario.email)
+        if (usuarioExiste) return res.status(400).send(`Usuario con mail ${usuario.email} ya existe`);
+        usuario.password = await bcrypt.hash(usuario.password, 10)
+        const GuardarUsuario = await UsuariosService.createUsuario(usuario)
+        if (GuardarUsuario) {
+            return res.status(201).send("Usuario registrado correctamente");
+        }
+        return res.status(500).send("No se pudo guardar el usuario");
+    } catch (error) { 
+        res.status(500).send("Error durante la creación del usuario");
     }
 
-    
-    
+
+
 
 };
 
-const login = async (req, res) => {
+    const login = async (req, res) => {
     // --------------- COMPLETAR ---------------
     /*
 
@@ -53,27 +55,31 @@ const login = async (req, res) => {
             8. Devolver un mensaje de error si algo falló (status 500)
         
     */
-        try {
-            const {usuario} = req.body
-            if (!usuario.email || !usuario.password) return res.status(400).send("Atributos de usuario ivnalidos"); 
-            usuario = await bcrypt.compare(usuario, 10)
-            usuario.password = await bcrypt.compare(usuario.password, 10)
-        } catch (error){
-            res.status (400).send ("Algo fallo hasta el momento")
-        }
 
-        const token = jwt.sign({ userId: usuario._id }, process.env.JWT_SECRET, { expiresIn: '2m' });
-    
-        return res.status(200).json({
-            message: 'Inicio de sesión exitoso',
-            usuario: {
-                id: usuario.id,
-                email: usuario.email,
-                nombre: usuario.nombre
-            },
-            token
-        });
-    
-    };
-
+                try {
+                    const { email, password } = req.body;
+                    if (!email || !password) return res.status(400).send("Email y contraseña son requeridos");
+            
+                    const usuario = await UsuariosService.getUsuarioByEmail(email);
+                    if (!usuario) return res.status(400).send("Usuario no encontrado");
+            
+                    const esCorrectaLaPassword = await bcrypt.compare(password, usuario.password);
+                    if (!esCorrectaLaPassword) return res.status(400).send("Contraseña incorrecta");
+            
+                    const token = jwt.sign({ userId: usuario._id }, process.env.JWT_SECRET, { expiresIn: '2m' });
+            
+                    return res.status(200).json({
+                        message: 'Inicio de sesión exitoso',
+                        usuario: {
+                            id: usuario.id,
+                            email: usuario.email,
+                            nombre: usuario.nombre
+                        },
+                        token
+                    });
+                } catch (error) {
+                    res.status(500).send("Error en el proceso de inicio de sesión");
+                }
+            };
+            
 export default { register, login };

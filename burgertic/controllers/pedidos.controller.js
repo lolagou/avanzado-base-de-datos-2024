@@ -33,8 +33,8 @@ const getPedidosByUser = async (req, res) => {
             const {id} = req.params;
             try {
                 const pedidos = await PedidosService.getPedidosByUser(id);
-                if (pedidos.length < 1) {
-                    return res.status(404).json({ message: "No se encontraron pedidos para el usuario" });
+                if (pedidos.length ===0) {
+                    return res.status(404).json({ message: "No se encontraron pedidos del usuario" });
                 }
                 res.status(200).json(pedidos);
             } catch (error) {
@@ -57,12 +57,12 @@ const getPedidoById = async (req, res) => {
             const {id} = req.params;
     try {
         const pedidos = await PedidosService.getPedidoById(id);
-        if (pedidos.length < 1) {
-            return res.status(404).json({ message: "No se encontraron pedidos" });
+        if (!pedidos) {
+            return res.status(404).json({ message: "No se encontraron pedidos por id" });
         }
         res.status(200).json(pedidos);
     } catch (error) {
-        res.status(500).json({ message: "Error", error: error.message });
+        res.status(500).json({ message: "Error al obtener el pedido por id", error: error.message });
     }
 };
 
@@ -84,26 +84,25 @@ const createPedido = async (req, res) => {
 
             try {
                 if (!req.body.platos) return res.status(400).send("No se encontro un plato");
-                const {productos} = req.params.productos
-                if (!productos == Array) return res.status(400).send("El campo productos no es un array");
-                if (!productos >= 1) return res.status(400).send("El campo no hay un producto");
-                if (!productos.id || !productos.cantidad) return res.status(400).send("No tiene id ni cantidad"); 
-            [productos]
-            }
-            catch (error){ 
-                res.status (400).send ("Algo fallo hasta el momento")
-            }
+                const {productos} = req.body;
+                if (!Array.isArray(productos) || productos.length === 0) {
+                    return res.status(400).send("El campo productos debe ser un array con al menos un producto");
+                }
         
-        try {
-        const pedidos = await PedidosService.createPedido(id);
-        if (pedidos.length < 1) {
-            return res.status(404).json({ message: "No se encontraron pedidos" });
-        }
-        res.status(200).json(pedidos);
-    } catch (error) {
-        res.status(500).json({ message: "Error", error: error.message });
-    }
-};
+
+                for (const producto of productos) {
+                    if (!producto.id || !producto.cantidad) {
+                        return res.status(400).send("Cada producto debe tener un id y una cantidad");
+                    }
+                }
+        
+
+                const nuevoPedido = await PedidosService.createPedido(productos);
+                return res.status(201).json({ message: "Pedido creado con éxito", pedido: nuevoPedido });
+            } catch (error) {
+                res.status(500).json({ message: "Error al crear el pedido", error: error.message });
+            }
+        };
 
 const aceptarPedido = async (req, res) => {
     // --------------- COMPLETAR ---------------
@@ -127,9 +126,9 @@ const aceptarPedido = async (req, res) => {
 
     try {
         const nuevoPedido = await PedidosService.createPedido(id, platos);
-        res.status(201).json({ message: "Pedido creado", pedido: nuevoPedido });
+        res.status(201).json({ message: "Pedido aceptado", pedido: nuevoPedido });
     } catch (error) {
-        res.status(500).json({ message: "Error al crear el pedido", error: error.message });
+        res.status(500).json({ message: "Error al aceptar el pedido", error: error.message });
     }
 }
 

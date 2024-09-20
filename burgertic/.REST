@@ -13,26 +13,52 @@ Content-Type: "application/json"
 ###
 POST http://localhost:9000/auth/login HTTP/1.1
 
+Content-Type: application/json
+
+{
+    "email": "lolanunez@gmail.com",
+    "password": "Aprobame"
+}
+
 ### Rutas pedido
 GET http://localhost:9000/pedidos/ HTTP/1.1
 
 ###
 GET http://localhost:9000/pedidos/usuario HTTP/1.1
+Authorization: Bearer <token>
 
 ###
-GET http://localhost:9000/pedidos/:id HTTP/1.1
+GET http://localhost:9000/pedidos/1 HTTP/1.1
+Authorization: Bearer <token>
 
 ### 
 POST http://localhost:9000/pedidos/crear HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+    "productos": [
+        { "id": 1, "cantidad": 2 },
+        { "id": 2, "cantidad": 3 }
+    ]
+}
 
 ###
 POST http://localhost:9000/pedidos/aceptar HTTP/1.1
+Authorization: Bearer <token>
 
 ###
-PUT http://localhost:9000/pedidos/entragar HTTP/1.1
+PUT http://localhost:9000/pedidos/entregar HTTP/1.1
+Authorization: Bearer <token>
 
 ### 
 DELETE http://localhost:9000/pedidos/delete HTTP/1.1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+    "id": 1
+}
 
 //Rutas platos
 
@@ -40,22 +66,31 @@ DELETE http://localhost:9000/pedidos/delete HTTP/1.1
 GET http://localhost:9000/platos/ HTTP/1.1
 
 ###
-GET http://localhost:9000/platos/tipo/:tipo HTTP/1.1
+GET http://localhost:9000/platos/tipo/entrada HTTP/1.1
 
 ###
 POST http://localhost:9000/platos/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+    "nombre": "Hambuerguesa",
+    "descripcion": "Doble",
+    "precio": 7000,
+    "tipo": "principal"
+}
 
 ###
-PUT http://localhost:9000/platos/:id HTTP/1.1
+PUT http://localhost:9000/platos/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+    "nombre": "Hamburguesa actualizada",
+    "descripcion": "Hambuerguesa con papas con chedar",
+    "precio": 8500
+}
 
 ###
-DELETE http://localhost:9000/platos/:id HTTP/1.1
-
-export default {
-    getPlatos,
-    getPlatoById,
-    createPlato,
-    updatePlato,
-    deletePlato,
-    getPlatosByTipo,
-};
+DELETE http://localhost:9000/platos/1 HTTP/1.1
+Authorization: Bearer <token>
