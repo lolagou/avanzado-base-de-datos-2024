@@ -1,17 +1,48 @@
-GET http://localhost:3000/PlatosByPedido HTTP/1.1
+
+//PEDIDOS 
+
+GET http://localhost:9000/pedidos HTTP/1.1
 
 ###
-GET http://localhost:3000/Pedidos HTTP/1.1
+GET http://localhost:9000/pedidos/usuario HTTP/1.1
 
 ###
-GET http://localhost:3000/PedidoById HTTP/1.1
+GET http://localhost:9000/pedidos/:id HTTP/1.1
 
 ###
-POST http://localhost:3000/Plato HTTP/1.1
+POST http://localhost:9000/pedidos HTTP/1.1
 
 ###
-PUT  http://localhost:3000/Pedido HTTP/1.1
-Conten-Type: application/json
-{
-    
-}
+PUT http://localhost:9000/pedidos/:id/aceptar HTTP/1.1
+
+###
+DELETE http://localhost:9000/ HTTP/1.1
+
+###
+//PUT  http://localhost:3000/Pedido HTTP/1.1
+//Conten-Type: application/json
+//{
+//} http://localhost:3000/ HTTP/1.1
+
+//PLATOS
+
+###
+GET http://localhost:9000/Platos HTTP/1.1
+
+###
+GET  http://localhost:9000/PlatosById HTTP/1.1
+
+###
+POST http://localhost:9000/Plato HTTP/1.1
+
+###
+PUT http://localhost:9000/ HTTP/1.1
+
+export default {
+    getPlatos,
+    getPlatoById,
+    createPlato,
+    updatePlato,
+    deletePlato,
+    getPlatosByTipo,
+};
