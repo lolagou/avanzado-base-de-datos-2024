@@ -40,14 +40,14 @@ const getUsuarioById = async (id) => {
     }
 };
 
-const createUsuario = async (usuario) => {
+const createUsuario = async (usuarioNombre, usuarioApellido, usuarioEmail, usuarioPassword) => {
     const client = new Client(config);
     await client.connect();
 
     try {
         const { rows } = await client.query(
             "INSERT INTO usuarios (nombre, apellido, email, password, admin) VALUES ($1, $2, $3, $4, false)",
-            [usuario.nombre, usuario.apellido, usuario.email, usuario.password]
+            [usuarioNombre, usuarioApellido, usuarioEmail, usuarioPassword]
         );
 
         await client.end();

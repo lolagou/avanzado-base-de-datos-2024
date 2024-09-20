@@ -1,7 +1,6 @@
 import UsuariosService from "../services/usuarios.service.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import usuariosService from "../services/usuarios.service.js";
 
 const register = async (req, res) => {
     // --------------- COMPLETAR ---------------
@@ -20,13 +19,12 @@ const register = async (req, res) => {
         
     */
     try {
-        if (!req.body.usuario) return res.status(400).send("No se encontro un usuario en el body de la request");
-        const {usuario} = req.body
-        if (!usuario.nombre || !usuario.apellido || !usuario.email || !usuario.password) return res.status(400).send("Atributos de usuario ivnalidos"); 
-        const usuarioExiste = await UsuariosService.getUsuarioByEmail(usuario.email)
-        if (usuarioExiste) return res.status(400).send(`Usuario con mail ${usuario.email} ya existe`);
-        usuario.password = await bcrypt.hash(usuario.password, 10)
-        const GuardarUsuario = await UsuariosService.createUsuario(usuario)
+        let {nombre, apellido, email, password} = req.body
+        if (!nombre || !apellido || !email || !password) return res.status(400).send("Atributos de usuario ivnalidos"); 
+        const usuarioExiste = await UsuariosService.getUsuarioByEmail(email)
+        if (usuarioExiste) return res.status(400).send(`Usuario con mail ${email} ya existe`);
+        password = await bcrypt.hash(password, 10)
+        const GuardarUsuario = await UsuariosService.createUsuario(nombre, apellido, email, password)
         if (GuardarUsuario) return res.status (201).send ("Salio todo bien")
         if(!GuardarUsuario) return res.states (400).send ("No salio bien")
     }
