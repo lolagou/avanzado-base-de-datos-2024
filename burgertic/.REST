@@ -97,5 +97,5 @@ Authorization: Bearer <token>
 
 
 ### Ruta Adm a Usuario
-PUT http://localhost:9000/newadm HTTP/1.1
+PUT http://localhost:9000/admin/newadm/1 HTTP/1.1
 Authorization: Bearer <token>
