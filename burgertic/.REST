@@ -25,12 +25,13 @@ Authorization: Bearer
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxMTU4MjMsImV4cCI6MTcyNzExNTk0M30.CEI0riyPPcW0bqMv_65FxyJeaeDbwLc2T7En2IoTpoE
 
 ###
-GET http://localhost:9000/pedidos/usuario HTTP/1.1
+GET http://localhost:9000/pedidos/1 HTTP/1.1
 Authorization: Bearer <token>
 
 ###
-GET http://localhost:9000/pedidos/1 HTTP/1.1
+GET http://localhost:9000/pedidos/lolanunez@gmail.com HTTP/1.1
 Authorization: Bearer <token>
+
 
 ### 
 POST http://localhost:9000/pedidos/crear HTTP/1.1
@@ -43,6 +44,21 @@ Authorization: Bearer <token>
         { "id": 2, "cantidad": 3 }
     ]
 }
+
+###{
+"id": 1, "id_usuario": 20, "fecha": "2021-10-15", "estado": "pendiente", "platos": [
+
+{
+"id": 1, "cantidad": 2
+}, {
+
+"id": 2, "cantidad": 1
+}
+
+]
+
+}
+
 
 ###
 POST http://localhost:9000/pedidos/aceptar HTTP/1.1
@@ -61,13 +77,17 @@ Content-Type: application/json
     "id": 1
 }
 
+//no hace falta id creo
+
 //Rutas platos
 
 ###
 GET http://localhost:9000/platos/ HTTP/1.1
+Authorization: Bearer
 
 ###
 GET http://localhost:9000/platos/tipo/entrada HTTP/1.1
+Authorization: Bearer
 
 ###
 POST http://localhost:9000/platos/ HTTP/1.1
