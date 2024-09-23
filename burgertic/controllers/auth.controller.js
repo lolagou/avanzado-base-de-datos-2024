@@ -35,7 +35,7 @@ const register = async (req, res) => {
     }
 
 
-
+//hacer adm al usuario
 
 };
 

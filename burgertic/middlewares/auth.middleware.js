@@ -44,10 +44,13 @@ export const verifyAdmin = async (req, res, next) => {
 
             1. Verificar que el id de usuario en la request es un administrador (utilizando el servicio de usuarios)
             2. Si no lo es, devolver un error 403 (Forbidden)
+
+            update 
     
     */
         const isAdmin = await UsuariosService.getUsuarioById(req.userId)
         if (!isAdmin) return res.status(403).send("El acceso no está permitido, no es admin"); 
         
-        next(); //continua
+        next();
+        //continua
         };
