@@ -30,10 +30,10 @@ const getPedidosByUser = async (req, res) => {
         
     */
 
-            const {id} = req.params;
+            const {user} = req.params;
             try {
-                const pedidos = await PedidosService.getPedidosByUser(id);
-                if (pedidos.length ===0) {
+                const pedidos = await PedidosService.getPedidosByUser(user);
+                if(!pedidos|| pedidos.length === 0) {
                     return res.status(404).json({ message: "No se encontraron pedidos del usuario" });
                 }
                 res.status(200).json(pedidos);
@@ -55,6 +55,8 @@ const getPedidoById = async (req, res) => {
     */
 
             const {id} = req.params;
+
+            if (!id) return res.status(404).json({ message: "Se necesita un id" });
     try {
         const pedidos = await PedidosService.getPedidoById(id);
         if (!pedidos) {
@@ -119,18 +121,25 @@ const aceptarPedido = async (req, res) => {
         
     */
 
-            const { id, platos } = req.params;
-    if (!platos || !Array.isArray(platos) || platos.length === 0) {
-        return res.status(400).json({ message: "Ingresar un plato" });
-    }
+            const { id } = req.params;
 
-    try {
-        const nuevoPedido = await PedidosService.createPedido(id, platos);
-        res.status(201).json({ message: "Pedido aceptado", pedido: nuevoPedido });
-    } catch (error) {
-        res.status(500).json({ message: "Error al aceptar el pedido", error: error.message });
-    }
-}
+            if (!id) return res.status(404).json({ message: "Se necesita un id" });
+        
+            try {
+                const pedido = await PedidosService.getPedidoById(id);
+                if (!pedido) {
+                    return res.status(404).json({ message: "Pedido no encontrado" });
+                }
+                const pedidoEstado = pedido.estado;
+                if (pedidoEstado !== "pendiente") {
+                    return res.status(400).json({ message: "El pedido no está en estado pendiente" });
+                }
+                await PedidosService.updatePedido(id, "Aceptado");
+                res.status(200).json({ message: "Pedido aceptado con éxito" });
+            } catch (error) {
+                return res.status(500).json({ message: "Error al crear el pedido", error: error.message });
+            }
+};
 
 const comenzarPedido = async (req, res) => {
     // --------------- COMPLETAR ---------------
@@ -155,10 +164,11 @@ const comenzarPedido = async (req, res) => {
                 }
                 if (pedido.estado !== "aceptado") {
                     return res.status(400).json({ message: "Solo se pueden comenzar pedidos aceptados" });
-                }    
-    }
-    catch (error) {
-        res.status(500).json({message: error.message})
+                }
+                await PedidosService.updatePedido(id, "en camino");
+        res.status(200).json({ message: "Pedido en camino" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
 };
 

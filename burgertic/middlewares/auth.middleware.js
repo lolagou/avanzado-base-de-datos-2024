@@ -48,9 +48,29 @@ export const verifyAdmin = async (req, res, next) => {
             update 
     
     */
-        const isAdmin = await UsuariosService.getUsuarioById(req.userId)
-        if (!isAdmin) return res.status(403).send("El acceso no está permitido, no es admin"); 
+            try {
+                const authHeader = req.headers.authorization;
+                const secret = "lo-perdi";
         
-        next();
-        //continua
+                if (!authHeader || !authHeader.startsWith('Bearer ')) {
+                    return res.status(401).json({ message: 'Falta header' });
+                }
+        
+                const token = authHeader.split(' ')[1]; 
+                const decoded = jwt.verify(token, secret); 
+                const id = decoded.id;
+        
+                console.log(`user id: ${id}`);
+                
+                const user = await UsuariosService.getUsuarioById(id);
+        
+                console.log(`User: ${JSON.stringify(user)}`);
+        
+                if (!user || !user.admin) {
+                    return res.status(403).json({ message: 'Solo adm' });
+                }
+                next();
+            } catch (error) {
+                return res.status(500).json({ message: 'error del servidor', error: error.message });
+            }
         };
