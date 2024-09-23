@@ -18,24 +18,28 @@ const register = async (req, res) => {
             8. Devolver un mensaje de error si algo falló guardando al usuario (status 500)
         
     */
+        
     try {
-        if (!req.body.usuario) return res.status(400).send("No se encontro un usuario en el body de la request");
-        const {usuario} = req.body
-        if (!usuario.nombre || !usuario.apellido || !usuario.email || !usuario.password) return res.status(400).send("Atributos de usuario ivnalidos"); 
-        const usuarioExiste = await UsuariosService.getUsuarioByEmail(usuario.email)
-        if (usuarioExiste) return res.status(400).send(`Usuario con mail ${usuario.email} ya existe`);
-        usuario.password = await bcrypt.hash(usuario.password, 10)
-        const GuardarUsuario = await UsuariosService.createUsuario(usuario)
+        const { nombre, apellido, email, password } = req.body;
+        if (!nombre || !apellido || !email || !password) return res.status(400).send("Atributos de usuario ivnalidos"); 
+        const usuarioExiste = await UsuariosService.getUsuarioByEmail(email)
+        if (usuarioExiste) return res.status(400).send(`Usuario con mail ${email} ya existe`);
+        console.log(
+            nombre,
+            password,
+            email,
+            apellido
+        );
+        const passwordHashed = await bcrypt.hash(password, 10);
+        const GuardarUsuario = await UsuariosService.createUsuario(nombre, apellido, email, passwordHashed);
         if (GuardarUsuario) {
             return res.status(201).send("Usuario registrado correctamente");
         }
         return res.status(500).send("No se pudo guardar el usuario");
     } catch (error) { 
+        console.log (error)
         res.status(500).send("Error durante la creación del usuario");
     }
-
-
-//hacer adm al usuario
 
 };
 

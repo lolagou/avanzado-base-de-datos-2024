@@ -1,10 +1,10 @@
 
 ### Rutas de auth
 POST  http://localhost:9000/auth/register HTTP/1.1
-Content-Type: "application/json"
+Content-Type: application/json
 
-{
-    "nombre": "Lola", 
+{ 
+    "nombre": "lola", 
     "apellido": "Gouget", 
     "email": "lolanunez@gmail.com",
     "password": "Aprobame"
