@@ -83,28 +83,34 @@ const createPedido = async (req, res) => {
             8. Devolver un mensaje de error si algo falló (status 500)
         
     */
-
-            try {
-                if (!req.body.platos) return res.status(400).send("No se encontro un plato");
-                const {productos} = req.body;
-                if (!Array.isArray(productos) || productos.length === 0) {
-                    return res.status(400).send("El campo productos debe ser un array con al menos un producto");
-                }
-        
-
-                for (const producto of productos) {
-                    if (!producto.id || !producto.cantidad) {
-                        return res.status(400).send("Cada producto debe tener un id y una cantidad");
+                try {
+                    // Verificar que el body tenga el campo platos
+                    if (!req.body.platos) {
+                        return res.status(400).send("No se encontró el campo 'platos'");
                     }
+                    
+                    const { platos } = req.body;
+            
+                    // Verificar que platos sea un array y que tenga al menos un plato
+                    if (!Array.isArray(platos) || platos.length === 0) {
+                        return res.status(400).send("El campo 'platos' debe ser un array con al menos un plato");
+                    }
+            
+                    // Verificar que cada plato tenga id y cantidad
+                    for (const plato of platos) {
+                        if (!plato.id || !plato.cantidad) {
+                            return res.status(400).send("Cada plato debe tener un id y una cantidad");
+                        }
+                    }
+            
+                    // Crear el pedido
+                    const nuevoPedido = await PedidosService.createPedido(platos);
+                    return res.status(201).json({ message: "Pedido creado con éxito", pedido: nuevoPedido });
+                } catch (error) {
+                    // Devolver error si algo falló
+                    return res.status(500).json({ message: "Error al crear el pedido", error: error.message });
                 }
-        
-
-                const nuevoPedido = await PedidosService.createPedido(productos);
-                return res.status(201).json({ message: "Pedido creado con éxito", pedido: nuevoPedido });
-            } catch (error) {
-                res.status(500).json({ message: "Error al crear el pedido", error: error.message });
-            }
-        };
+            };
 
 const aceptarPedido = async (req, res) => {
     // --------------- COMPLETAR ---------------
