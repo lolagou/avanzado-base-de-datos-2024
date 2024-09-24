@@ -77,9 +77,11 @@ GET http://localhost:9000/platos/ HTTP/1.1
 Authorization: Bearer
 
 ###
-GET http://localhost:9000/platos/tipo/entrada HTTP/1.1
+GET http://localhost:9000/platos/tipo/combo HTTP/1.1
 Authorization: Bearer
-// tipo no valido
+
+
+
 ###
 POST http://localhost:9000/platos/ HTTP/1.1
 Content-Type: application/json
