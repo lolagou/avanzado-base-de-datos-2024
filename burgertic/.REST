@@ -28,7 +28,7 @@ GET http://localhost:9000/pedidos/1 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxNzc0MzYsImV4cCI6MTcyNzE3NzU1Nn0.OMIQpHxj9mj3vWu4E48dB_tqsqv819KC0_FBZkAcTDQ
 
 ###
-GET http://localhost:9000/pedidos/lolanunez@gmail.com HTTP/1.1
+GET http://localhost:9000/pedidos/usuario/3 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxNzc0MzYsImV4cCI6MTcyNzE3NzU1Nn0.OMIQpHxj9mj3vWu4E48dB_tqsqv819KC0_FBZkAcTDQ
 
 
@@ -55,22 +55,20 @@ Content-Type: application/json
 
 ###
 POST http://localhost:9000/pedidos/aceptar HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxMTU4MjMsImV4cCI6MTcyNzExNTk0M30.CEI0riyPPcW0bqMv_65FxyJeaeDbwLc2T7En2IoTpoE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTc5OTY2LCJleHAiOjE3MjcxODIzNjZ9.R0nWsuKDyMlKhDN-GYRSWNgn036ixX_4cIaYHAPwax4
 
 ###
 PUT http://localhost:9000/pedidos/entregar HTTP/1.1
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTc5OTY2LCJleHAiOjE3MjcxODIzNjZ9.R0nWsuKDyMlKhDN-GYRSWNgn036ixX_4cIaYHAPwax4
 
 ### 
-DELETE http://localhost:9000/pedidos/delete HTTP/1.1
-Authorization: Bearer <token>
+DELETE http://localhost:9000/pedidos/eliminar HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTc5OTY2LCJleHAiOjE3MjcxODIzNjZ9.R0nWsuKDyMlKhDN-GYRSWNgn036ixX_4cIaYHAPwax4
 Content-Type: application/json
 
 {
     "id": 1
 }
-
-//no hace falta id creo
 
 //Rutas platos
 
@@ -85,7 +83,7 @@ Authorization: Bearer
 ###
 POST http://localhost:9000/platos/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTc5OTY2LCJleHAiOjE3MjcxODIzNjZ9.R0nWsuKDyMlKhDN-GYRSWNgn036ixX_4cIaYHAPwax4
 
 {
     "nombre": "Hambuerguesa",
@@ -97,17 +95,18 @@ Authorization: Bearer <token>
 ###
 PUT http://localhost:9000/platos/1 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTc5OTY2LCJleHAiOjE3MjcxODIzNjZ9.R0nWsuKDyMlKhDN-GYRSWNgn036ixX_4cIaYHAPwax4
 
 {
     "nombre": "Hamburguesa actualizada",
     "descripcion": "Hambuerguesa con papas con chedar",
-    "precio": 8500
+    "precio": 8500,
+    "tipo": "inicial"
 }
 
 ###
-DELETE http://localhost:9000/platos/1 HTTP/1.1
-Authorization: Bearer <token>
+DELETE http://localhost:9000/platos/3 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTc5OTY2LCJleHAiOjE3MjcxODIzNjZ9.R0nWsuKDyMlKhDN-GYRSWNgn036ixX_4cIaYHAPwax4
 
 
 ### Ruta Adm a Usuario
