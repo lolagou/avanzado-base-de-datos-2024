@@ -19,7 +19,7 @@ export const verifyToken = async (req, res, next) => {
             if (!req.headers.authorization) {
                 return res.status(401).json({ message: 'No hay token' });
             }
-            const {token} = req.headers.authorization.split(" ")[1]
+            const token = req.headers.authorization.split(" ")[1]
             if (!token) return res.status(400).send("Formato incorrecto");
 
     
@@ -27,7 +27,7 @@ export const verifyToken = async (req, res, next) => {
             const decoded = jwt.verify(token, process.env.JWT_SECRET); //revisar
     
             if (!decoded || !decoded.id) {
-                return res.status(401).json({ message: 'Invalid token: No se encontre UserId' });
+                return res.status(401).json({ message: 'Invalid token: No se encontro UserId' });
             }
 
             req.userId = decoded.id;
@@ -50,7 +50,7 @@ export const verifyAdmin = async (req, res, next) => {
     */
             try {
                 const authHeader = req.headers.authorization;
-                const secret = "lo-perdi";
+                const secret = process.env.JWT_SECRET;
         
                 if (!authHeader || !authHeader.startsWith('Bearer ')) {
                     return res.status(401).json({ message: 'Falta header' });

@@ -34,14 +34,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxNzc0M
 
 ### 
 POST http://localhost:9000/pedidos/crear HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTc5OTY2LCJleHAiOjE3MjcxODIzNjZ9.R0nWsuKDyMlKhDN-GYRSWNgn036ixX_4cIaYHAPwax4
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxNzc0MzYsImV4cCI6MTcyNzE3NzU1Nn0.OMIQpHxj9mj3vWu4E48dB_tqsqv819KC0_FBZkAcTDQ
 
 {
-    "id": 1,
     "id_usuario": 1,
     "fecha": "2021-10-15",
-    "estado": "pendiente",
     "platos": [
         {
             "id": 1,

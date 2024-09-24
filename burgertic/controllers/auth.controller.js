@@ -70,7 +70,7 @@ const register = async (req, res) => {
                     const esCorrectaLaPassword = await bcrypt.compare(password, usuario.password);
                     if (!esCorrectaLaPassword) return res.status(400).send("Contraseña incorrecta");
             
-                    const token = jwt.sign({ userId: usuario._id }, process.env.JWT_SECRET, { expiresIn: '2m' });
+                    const token = jwt.sign({ id: usuario.id }, process.env.JWT_SECRET, { expiresIn: '40m' });
             
                     return res.status(200).json({
                         message: 'Inicio de sesión exitoso',

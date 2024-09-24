@@ -104,7 +104,7 @@ const createPedido = async (req, res) => {
                     }
             
                     // Crear el pedido
-                    const nuevoPedido = await PedidosService.createPedido(platos);
+                    const nuevoPedido = await PedidosService.createPedido(req.userId, platos);
                     return res.status(201).json({ message: "Pedido creado con éxito", pedido: nuevoPedido });
                 } catch (error) {
                     // Devolver error si algo falló
