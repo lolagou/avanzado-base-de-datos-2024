@@ -21,22 +21,21 @@ Content-Type: application/json
 
 ### Rutas pedido
 GET http://localhost:9000/pedidos/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxMTU4MjMsImV4cCI6MTcyNzExNTk0M30.CEI0riyPPcW0bqMv_65FxyJeaeDbwLc2T7En2IoTpoE
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxNzc0MzYsImV4cCI6MTcyNzE3NzU1Nn0.OMIQpHxj9mj3vWu4E48dB_tqsqv819KC0_FBZkAcTDQ
 
 ###
 GET http://localhost:9000/pedidos/1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxMTU4MjMsImV4cCI6MTcyNzExNTk0M30.CEI0riyPPcW0bqMv_65FxyJeaeDbwLc2T7En2IoTpoE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxNzc0MzYsImV4cCI6MTcyNzE3NzU1Nn0.OMIQpHxj9mj3vWu4E48dB_tqsqv819KC0_FBZkAcTDQ
 
 ###
 GET http://localhost:9000/pedidos/lolanunez@gmail.com HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxMTU4MjMsImV4cCI6MTcyNzExNTk0M30.CEI0riyPPcW0bqMv_65FxyJeaeDbwLc2T7En2IoTpoE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxNzc0MzYsImV4cCI6MTcyNzE3NzU1Nn0.OMIQpHxj9mj3vWu4E48dB_tqsqv819KC0_FBZkAcTDQ
 
 
 ### 
 POST http://localhost:9000/pedidos/crear HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxMTU4MjMsImV4cCI6MTcyNzExNTk0M30.CEI0riyPPcW0bqMv_65FxyJeaeDbwLc2T7En2IoTpoE
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcxNzc0MzYsImV4cCI6MTcyNzE3NzU1Nn0.OMIQpHxj9mj3vWu4E48dB_tqsqv819KC0_FBZkAcTDQ
 
 {
     "id": 1,
