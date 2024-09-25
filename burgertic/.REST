@@ -21,20 +21,20 @@ Content-Type: application/json
 
 ### Rutas pedido
 GET http://localhost:9000/pedidos/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTg2OTUyLCJleHAiOjE3MjcxODkzNTJ9.YIZ2mJB-tYyeg7rj4WNlT_GZ5O0GgO0wzociiBafbow
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MjY2ODM0LCJleHAiOjE3MjcyNjk4MzR9.JrnspDntL_qRr6MVvliQqzooR5vmVOwbq5XfRDQ7a5I
 
 ###
 GET http://localhost:9000/pedidos/1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTg2OTUyLCJleHAiOjE3MjcxODkzNTJ9.YIZ2mJB-tYyeg7rj4WNlT_GZ5O0GgO0wzociiBafbow
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MjY2ODM0LCJleHAiOjE3MjcyNjk4MzR9.JrnspDntL_qRr6MVvliQqzooR5vmVOwbq5XfRDQ7a5I
 
 ###
 GET http://localhost:9000/pedidos/usuario/3 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTg2OTUyLCJleHAiOjE3MjcxODkzNTJ9.YIZ2mJB-tYyeg7rj4WNlT_GZ5O0GgO0wzociiBafbow
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MjY2ODM0LCJleHAiOjE3MjcyNjk4MzR9.JrnspDntL_qRr6MVvliQqzooR5vmVOwbq5XfRDQ7a5I
 
 
 ### 
 POST http://localhost:9000/pedidos/crear HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTg2OTUyLCJleHAiOjE3MjcxODkzNTJ9.YIZ2mJB-tYyeg7rj4WNlT_GZ5O0GgO0wzociiBafbow
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MjY2ODM0LCJleHAiOjE3MjcyNjk4MzR9.JrnspDntL_qRr6MVvliQqzooR5vmVOwbq5XfRDQ7a5I
 Content-Type: application/json
 
 {
@@ -54,16 +54,16 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:9000/pedidos/aceptar/3 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTg2OTUyLCJleHAiOjE3MjcxODkzNTJ9.YIZ2mJB-tYyeg7rj4WNlT_GZ5O0GgO0wzociiBafbow
+POST http://localhost:9000/pedidos/aceptar/8 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MjY2ODM0LCJleHAiOjE3MjcyNjk4MzR9.JrnspDntL_qRr6MVvliQqzooR5vmVOwbq5XfRDQ7a5I
 
 ###
-PUT http://localhost:9000/pedidos/entregar/3 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTg2OTUyLCJleHAiOjE3MjcxODkzNTJ9.YIZ2mJB-tYyeg7rj4WNlT_GZ5O0GgO0wzociiBafbow
+PUT http://localhost:9000/pedidos/entregar/8 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MjY2ODM0LCJleHAiOjE3MjcyNjk4MzR9.JrnspDntL_qRr6MVvliQqzooR5vmVOwbq5XfRDQ7a5I
 
 ### 
-DELETE http://localhost:9000/pedidos/eliminar/3 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTg2OTUyLCJleHAiOjE3MjcxODkzNTJ9.YIZ2mJB-tYyeg7rj4WNlT_GZ5O0GgO0wzociiBafbow
+DELETE http://localhost:9000/pedidos/eliminar/8 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MjY2ODM0LCJleHAiOjE3MjcyNjk4MzR9.JrnspDntL_qRr6MVvliQqzooR5vmVOwbq5XfRDQ7a5I
 Content-Type: application/json
 
 {
@@ -85,7 +85,7 @@ Authorization: Bearer
 ###
 POST http://localhost:9000/platos/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTg2OTUyLCJleHAiOjE3MjcxODkzNTJ9.YIZ2mJB-tYyeg7rj4WNlT_GZ5O0GgO0wzociiBafbow
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MjY2ODM0LCJleHAiOjE3MjcyNjk4MzR9.JrnspDntL_qRr6MVvliQqzooR5vmVOwbq5XfRDQ7a5I
 
 {
     "nombre": "Hambuerguesa",
@@ -97,7 +97,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxN
 ###
 PUT http://localhost:9000/platos/1 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTg2OTUyLCJleHAiOjE3MjcxODkzNTJ9.YIZ2mJB-tYyeg7rj4WNlT_GZ5O0GgO0wzociiBafbow
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MjY2ODM0LCJleHAiOjE3MjcyNjk4MzR9.JrnspDntL_qRr6MVvliQqzooR5vmVOwbq5XfRDQ7a5I
 
 {
     "nombre": "Hamburguesa actualizada",
@@ -108,9 +108,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxN
 
 ###
 DELETE http://localhost:9000/platos/3 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MTg2OTUyLCJleHAiOjE3MjcxODkzNTJ9.YIZ2mJB-tYyeg7rj4WNlT_GZ5O0GgO0wzociiBafbow
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MjY2ODM0LCJleHAiOjE3MjcyNjk4MzR9.JrnspDntL_qRr6MVvliQqzooR5vmVOwbq5XfRDQ7a5I
 
 
 ### Ruta Adm a Usuario
-PUT http://localhost:9000/admin/newadm/1 HTTP/1.1
-Authorization: Bearer <token>
+GET http://localhost:9000/usuarios/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MjY2ODM0LCJleHAiOjE3MjcyNjk4MzR9.JrnspDntL_qRr6MVvliQqzooR5vmVOwbq5XfRDQ7a5I

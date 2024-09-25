@@ -16,7 +16,7 @@ app.get("/", (_, res) => res.send("BurgerTIC API is running..."));
 app.use("/platos", PlatosRouter);
 app.use("/auth", AuthRouter);
 app.use("/pedidos", PedidosRouter);
-app.use("/admin", AdminRouter)
+app.use("/usuarios", AdminRouter)
 
 app.listen(process.env.PORT || 9000, () =>
     console.log(`Server is running on port ${process.env.PORT || 9000}`)

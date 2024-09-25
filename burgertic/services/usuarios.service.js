@@ -76,6 +76,9 @@ const ConvertirUsuario = async (id) => {
     }
 };
 
+const upgradeUsuario = async (id) => {
+    await client.query ("UPDATE usuarios SET admin=true WHERE id = $1", [id])
+    
+};
 
-
-export default { getUsuarioByEmail, getUsuarioById, createUsuario, ConvertirUsuario };
+export default { upgradeUsuario, getUsuarioByEmail, getUsuarioById, createUsuario, ConvertirUsuario };
