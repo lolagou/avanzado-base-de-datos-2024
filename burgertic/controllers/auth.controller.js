@@ -21,7 +21,7 @@ const register = async (req, res) => {
         
     try {
         const { nombre, apellido, email, password } = req.body;
-        if (!nombre || !apellido || !email || !password) return res.status(400).send("Atributos de usuario ivnalidos"); 
+        if (!nombre || !apellido || !email || !password) return res.status(400).send("Atributos de usuario invalidos"); 
         const usuarioExiste = await UsuariosService.getUsuarioByEmail(email)
         if (usuarioExiste) return res.status(400).send(`Usuario con mail ${email} ya existe`);
         console.log(
@@ -67,8 +67,8 @@ const register = async (req, res) => {
                     const usuario = await UsuariosService.getUsuarioByEmail(email);
                     if (!usuario) return res.status(400).send("Usuario no encontrado");
             
-                    const esCorrectaLaPassword = await bcrypt.compare(password, usuario.password);
-                    if (!esCorrectaLaPassword) return res.status(400).send("Contraseña incorrecta");
+                    const EsCorrectoPass = await bcrypt.compare(password, usuario.password);
+                    if (!EsCorrectoPass) return res.status(400).send("Contraseña incorrecta");
             
                     const token = jwt.sign({ id: usuario.id }, process.env.JWT_SECRET, { expiresIn: '40m' });
             

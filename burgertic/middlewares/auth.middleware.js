@@ -24,7 +24,7 @@ export const verifyToken = async (req, res, next) => {
 
     
     
-            const decoded = jwt.verify(token, process.env.JWT_SECRET); //revisar
+            const decoded = jwt.verify(token, process.env.JWT_SECRET); 
     
             if (!decoded || !decoded.id) {
                 return res.status(401).json({ message: 'Invalid token: No se encontro UserId' });
