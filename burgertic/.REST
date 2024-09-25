@@ -112,5 +112,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxN
 
 
 ### Ruta Adm a Usuario
-GET http://localhost:9000/usuarios/ HTTP/1.1
+GET http://localhost:9000/usuarios/3 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MjY2ODM0LCJleHAiOjE3MjcyNjk4MzR9.JrnspDntL_qRr6MVvliQqzooR5vmVOwbq5XfRDQ7a5I
