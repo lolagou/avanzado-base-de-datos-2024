@@ -99,7 +99,7 @@ const getPedidosByUser = async (idUsuario) => {
             [idUsuario]
         );
 
-        if (rows.length < 1) return [];
+        if (rows.length === 0) return null;
 
         const result = await Promise.all(
             rows.map(async (pedido) => {
